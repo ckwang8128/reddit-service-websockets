@@ -1,3 +1,5 @@
+import signal
+
 import gevent
 
 from baseplate import config, make_metrics_client

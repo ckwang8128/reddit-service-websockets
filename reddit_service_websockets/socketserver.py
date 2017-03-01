@@ -1,6 +1,5 @@
 import base64
 import logging
-import signal
 import urlparse
 
 import gevent
