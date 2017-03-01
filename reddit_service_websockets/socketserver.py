@@ -129,15 +129,6 @@ class SocketServer(object):
         self.quiesced = False
         self.connections = set()
 
-        # register SIGUSR2 to trigger quiescing,
-        #  useful if server processes are behind
-        #  a process manager like einhorn.
-        def _handle_quiesce_signal(_, frame):
-            self._quiesce({}, bypass_auth=True)
-
-        signal.signal(signal.SIGUSR2, _handle_quiesce_signal)
-        signal.siginterrupt(signal.SIGUSR2, False)
-
     def __call__(self, environ, start_response):
         path_info = environ["PATH_INFO"]
         req_method = environ['REQUEST_METHOD']
